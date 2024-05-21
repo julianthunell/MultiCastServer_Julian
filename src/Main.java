@@ -21,5 +21,18 @@ public class Main {
         chatMulticastCocket.joinGroup(group);
 
         //Prompt a user to enter a message
+        String msg = "";
+        System.out.println("Message for server: ");
+
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        msg = br.readLine();
+
+        DatagramPacket data = new DatagramPacket(msg.getBytes(),0,msg.length(),group,portnumber);
+        chatMulticastCocket.send(data);
+
+        //close
+        chatMulticastCocket.close();
+
     }
 }
